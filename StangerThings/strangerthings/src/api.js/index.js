@@ -119,4 +119,25 @@ export const deletePost = async (token, id) => {
 
 
 
+export const addMessage = async (token, id, content) => {
+  try {
+    const response = await fetch(`${BASE_URL}/posts/${id}/messages`, {
+      method: "POST", 
+      headers: {
+        'Content-type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        message: {
+          content
+        } 
+      })
+    })
+    return response;
+  } catch (error) {
+    throw error;
+  }
+}
+
+
    

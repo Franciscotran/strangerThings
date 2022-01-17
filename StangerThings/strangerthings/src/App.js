@@ -1,14 +1,16 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import {Routes, Route, Link} from 'react-router-dom';
-import {Posts, Register, Login} from './components'
+import {Posts, Register, Login, Messageform} from './components'
 
 
 
 function App() {
 
   const [token, setToken] = useState('');
-  console.log(token)
+  const [posts, setPosts] = useState([]);
+  const [id, setId] = useState ('')
+  
 
 
   useEffect(() => {
@@ -27,7 +29,7 @@ function App() {
     <div className="App">
       <nav className='navBar'>
       {token && <h2>You're logged in</h2>}
-        <Link to='/'> Home</Link>
+        <Link to='/posts'> Home</Link>
         {!token&& <Link to='/Register'>   Register</Link>}
         {!token&&<Link to='/LogIn'>  Log In</Link>}
         {token && <button onClick={() => {
@@ -38,9 +40,10 @@ function App() {
 
       </nav>
        <Routes>
-       <Route path='/' element={<Posts token={token}  />}/>
-        <Route path='/Register' element={<   Register />}/>
+       <Route path='/posts' element={<Posts  setId={setId} token={token} posts={posts} setPosts={setPosts}  />}/>
+       <Route path='/Register' element={<   Register />}/>
        <Route path= '/LogIn' element ={< Login token = {token} setToken = {setToken}/>}/>
+       <Route path= '/posts/:_Id/messages' element={<Messageform id={id} token={token} posts={posts} setPosts={setPosts} />} />
        </Routes>
      
       

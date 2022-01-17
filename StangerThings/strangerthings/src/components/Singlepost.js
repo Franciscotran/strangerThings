@@ -1,15 +1,17 @@
 import { deletePost } from '../api.js';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const singlePost = ({post, token, posts, setPosts}) => {
+const SinglePost = ({post, token, posts, setPosts}) => {
+  const navigate = useNavigate();
   //children only goes one level
   //if multiple levels  are needed to do drilldown
   //use the useContext hook;
   
 //   const navigate = useNavigate();
+   let id = posts._id
 
   const handleDelete = async () => {
-    let id = post._id
+    
     try {
       await deletePost(token, id); //the specific fetch call only updates the backend through a frontend event such as a click
       console.log( await deletePost)
@@ -32,10 +34,11 @@ const singlePost = ({post, token, posts, setPosts}) => {
         <div>Price: {post.price}</div>
         <div> Will Deliver: {post.willDeliver}</div>
         {post.isAuthor == true? <button className='delete' onClick={handleDelete}>DELETE</button> : null}
+        {token &&! post.isAuthor && <button onClick={() => {navigate(`/posts/${id}/messages`)}}>COMMENT</button>}
        
       </div>
       </>
     
 }
 
-export default singlePost;
+export default SinglePost;

@@ -3,9 +3,9 @@ import { getPosts } from '../api.js';
 import AddPosts from './AddPost'
 import Singlepost from './Singlepost'
 
-const Posts = ({token})=>{
+const Posts = ({token,posts,setPosts, setId})=>{
 
-    const [posts, setPosts] = useState([]);
+    
     const [post, setPost] = useState({});
     
 
@@ -13,8 +13,9 @@ const Posts = ({token})=>{
         const newPosts = await getPosts(token)
         setPosts(newPosts)
     }
-    console.log(posts);
     
+    console.log(posts);
+    setId(post._id)
 
     
     useEffect(() => {
@@ -22,9 +23,11 @@ const Posts = ({token})=>{
      }, [token]);
 
      return <>
+      
      {token && <AddPosts token = {token} posts={posts} setPosts ={setPosts} post={post} setPost={setPost}/>}
         <div className="Posts">
             {token && posts.length>0?posts.map(post=> {
+                
                 return(<Singlepost key={post._id} token={token} posts= {posts} setPosts= {setPosts} post={post} setPost={setPost}/>)
             }):""}
              {!token && posts.length>0?posts.map(post=> {
