@@ -9,7 +9,7 @@ function App() {
 
   const [token, setToken] = useState('');
   const [posts, setPosts] = useState([]);
-  const [id, setId] = useState ('')
+  const [post, setPost] = useState({});
   
 
 
@@ -30,7 +30,7 @@ function App() {
       <nav className='navBar'>
       {token && <h2>You're logged in</h2>}
         <Link to='/posts'> Home</Link>
-        {!token&& <Link to='/Register'>   Register</Link>}
+        {!token&& <Link to='/Register'>Register</Link>}
         {!token&&<Link to='/LogIn'>  Log In</Link>}
         {token && <button onClick={() => {
             setToken('');
@@ -40,10 +40,10 @@ function App() {
 
       </nav>
        <Routes>
-       <Route path='/posts' element={<Posts  setId={setId} token={token} posts={posts} setPosts={setPosts}  />}/>
+       <Route path='/posts' element={<Posts token={token} posts={posts} setPosts={setPosts} post={post} setPost={setPost} />}/>
        <Route path='/Register' element={<   Register />}/>
        <Route path= '/LogIn' element ={< Login token = {token} setToken = {setToken}/>}/>
-       <Route path= '/posts/:_Id/messages' element={<Messageform id={id} token={token} posts={posts} setPosts={setPosts} />} />
+       <Route path= '/posts/:_Id/messages' element={<Messageform token={token} posts={posts} setPosts={setPosts} post={post} />} />
        </Routes>
      
       

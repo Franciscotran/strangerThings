@@ -1,12 +1,14 @@
-
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { addMessage, getPosts} from "../api.js";
 
-const MessageForm = ({token, setPosts, id}) => {
-
+const MessageForm = ({token, setPosts, post }) => {
+    const paramsData = useParams();
     const [content, setContent] = useState('');
 
-    console.log(id)
+    let id = (paramsData._Id)
+
+    console.log(paramsData._Id)
 	
 	
 
@@ -16,6 +18,7 @@ const MessageForm = ({token, setPosts, id}) => {
 			let response = await addMessage(token, id, content);
 			const  newPosts = await getPosts(token);
 			setPosts(newPosts);
+            setContent('')
             console.log(response)
 		}	catch (error) {
 			console.error(error);
@@ -29,6 +32,7 @@ const MessageForm = ({token, setPosts, id}) => {
 			<label htmlFor="comment-input">Message: </label>
 			<input value={content} onChange={(event)=> { setContent(event.target.value)}} id="comment-input"/>
 			<button>subbmit</button>
+
 		</form>
 	)
 }

@@ -1,14 +1,18 @@
 import { deletePost } from '../api.js';
 import { useNavigate } from 'react-router-dom';
 
-const SinglePost = ({post, token, posts, setPosts}) => {
+const SinglePost = ({post, token, posts, setPosts, setId}) => {
   const navigate = useNavigate();
   //children only goes one level
   //if multiple levels  are needed to do drilldown
   //use the useContext hook;
   
 //   const navigate = useNavigate();
-   let id = posts._id
+   let id = post._id
+   
+   
+  
+  // setId(id)
 
   const handleDelete = async () => {
     
@@ -26,6 +30,7 @@ const SinglePost = ({post, token, posts, setPosts}) => {
   };
   
   return <> 
+       
         <div >
 
         <h3> Title: {post.title}</h3> 

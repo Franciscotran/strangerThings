@@ -3,19 +3,17 @@ import { getPosts } from '../api.js';
 import AddPosts from './AddPost'
 import Singlepost from './Singlepost'
 
-const Posts = ({token,posts,setPosts, setId})=>{
+const Posts = ({token,posts,setPosts, setId, post, setPost})=>{
 
     
-    const [post, setPost] = useState({});
+    
     
 
     const handdlePosts = async () =>{
         const newPosts = await getPosts(token)
         setPosts(newPosts)
     }
-    
-    console.log(posts);
-    setId(post._id)
+     
 
     
     useEffect(() => {
@@ -28,10 +26,10 @@ const Posts = ({token,posts,setPosts, setId})=>{
         <div className="Posts">
             {token && posts.length>0?posts.map(post=> {
                 
-                return(<Singlepost key={post._id} token={token} posts= {posts} setPosts= {setPosts} post={post} setPost={setPost}/>)
+                return(<Singlepost key={post._id} token={token} posts= {posts} setPosts= {setPosts} post={post} setPost={setPost} setId={setId}/>)
             }):""}
              {!token && posts.length>0?posts.map(post=> {
-                return(<Singlepost key={post._id} token={token} posts= {posts} setPosts= {setPosts} post={post} setPost={setPost}/>)
+                return(<Singlepost key={post._id} token={token} posts= {posts} setPosts= {setPosts} post={post} setPost={setPost} setId={setId}/>)
             }):""}
           
             
