@@ -29,10 +29,10 @@ function App() {
     <div className="App">
       <nav className='navBar'>
       {token && <h2>You're logged in</h2>}
-        <Link to='/posts'> Home</Link>
-        {!token&& <Link to='/Register'>Register</Link>}
-        {!token&&<Link to='/LogIn'>  Log In</Link>}
-        {token && <button onClick={() => {
+        <Link className='navchild' to='/posts'> Home</Link>
+        {!token&& <Link className='navchild' to='/Register'>Register</Link>}
+        {!token&&<Link className='navchild' to='/LogIn'>  Log In</Link>}
+        {token && <button className="navChild" onClick={() => {
             setToken('');
             localStorage.removeItem('token');
           }}>Log Out</button>}

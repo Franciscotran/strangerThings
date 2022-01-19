@@ -19,6 +19,10 @@ const Login = ({setToken, token})=>{
         // setMessage(message);
         setToken(token)
         localStorage.setItem('token', token)
+        setUsername('')
+        setPassword('')
+        
+        
 
         
         }else{
