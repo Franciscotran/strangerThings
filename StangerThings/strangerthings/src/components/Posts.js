@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import {useEffect } from 'react';
 import { getPosts } from '../api.js';
 import AddPosts from './AddPost'
 import Singlepost from './Singlepost'
@@ -6,7 +6,7 @@ import Singlepost from './Singlepost'
 const Posts = ({token,posts,setPosts, setId, post, setPost})=>{
 
     
-    
+   
     
 
     const handdlePosts = async () =>{
@@ -15,10 +15,14 @@ const Posts = ({token,posts,setPosts, setId, post, setPost})=>{
     }
      
 
-    
     useEffect(() => {
      handdlePosts()
      }, [token]);
+
+     useEffect(() => {
+        handdlePosts()
+        }, []);
+    
 
      return <>
       
